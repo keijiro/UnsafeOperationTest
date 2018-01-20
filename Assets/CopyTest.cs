@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Collections;
+using System.Runtime.InteropServices;
 
 public class CopyTest : MonoBehaviour
 {
@@ -14,7 +15,11 @@ public class CopyTest : MonoBehaviour
     void Update()
     {
         var na = new NativeArray<byte>(_buffer.Length, Allocator.Temp);
-        na.CopyTo(_buffer);
+
+        Marshal.Copy(na.GetUnsafePtr(), _buffer, 0, _buffer.Length);
+
+        //na.CopyTo(_buffer);
+
         na.Dispose();
     }
 }
