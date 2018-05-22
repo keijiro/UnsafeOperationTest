@@ -1,6 +1,4 @@
-NativeArrayTest
----------------
+UnsafeOperationTest
+-------------------
 
-Some examples/benchmarks on Unity's NativeArray class
-
-**Conclusion:**  Avoid using NativeArray.CopyTo with a long array. It can be quite slow.
+Examples/benchmarks on Unity's unsafe utility functions.
