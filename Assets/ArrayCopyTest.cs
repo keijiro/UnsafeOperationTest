@@ -89,6 +89,16 @@ namespace ArrayCopyTest
         }
     }
 
+    class TestCopyFromFast : TestBase
+    {
+        public TestCopyFromFast(int length) : base(length) {}
+
+        public override void DoCopy(int[] source, NativeArray<int> destination)
+        {
+            destination.CopyFromFast(source);
+        }
+    }
+
     public class ArrayCopyTest : MonoBehaviour
     {
         [SerializeField] int _length = 1920 * 1080;
@@ -101,7 +111,8 @@ namespace ArrayCopyTest
             _tests = new TestBase [] {
                 new TestMarshalCopy(_length),
                 new TestNativeCopyFrom(_length),
-                new TestUnsafeMemCpy(_length)
+                new TestUnsafeMemCpy(_length),
+                new TestCopyFromFast(_length)
             };
 
             foreach (var test in _tests) test.RunTest(true);
